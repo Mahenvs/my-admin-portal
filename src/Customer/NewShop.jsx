@@ -58,7 +58,7 @@ const NewShop = () => {
     })
     const response = await data.json();
 
-    if(response.status === 200 ){
+    if(data.status === 200 ){
       setErrorMsg(null);
       dispatch(setStoreId(response.id));
       navigate("/products")
@@ -69,6 +69,9 @@ const NewShop = () => {
       }
       else if(formData.address.length < 3){
         setErrorMsg("Store Address must be minimum of length 3");
+      }
+      else{
+        setErrorMsg(response.message);
       }
       throw new Error("Status is not 200");
     }

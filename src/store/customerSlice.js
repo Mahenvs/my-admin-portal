@@ -1,0 +1,27 @@
+import {createSlice} from '@reduxjs/toolkit';
+
+const customerSlice = createSlice({
+    name:'customer',
+    initialState:{
+        storeName: null,
+        storeDomainResource: null,
+        storeId: null
+    },
+    reducers: {
+
+        setStoreName: (state,action) =>{
+            state.name = action.payload;
+        },
+        setStoreDomain: (state,action) =>{
+            console.log("domain ",action.payload);
+            state.storeDomainResource = action.payload;
+        },
+        setStoreId: (state,action) => {
+            console.log("19 store id ",action.payload);
+            state.storeId = action.payload
+        }
+    }
+})
+
+export const {setName,setAdminId,setStoreId,setStoreDomain} = customerSlice.actions;
+export default customerSlice.reducer;

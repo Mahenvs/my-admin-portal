@@ -86,8 +86,8 @@ export const RegisterUser = () => {
       }),
     });
     const response = await data.json();
-
-    if(response.status === 200 ){
+    console.log(data.status," status ",response.status);
+    if(data.status === 201 ){
     // dispatch(setAdminId(response.id));
 
     navigate("/create-new-shop", {
@@ -98,6 +98,7 @@ export const RegisterUser = () => {
     }
     else{
       setErrorMsg(response.message);
+      console.log(response.message);
       throw new Error("Status is not 200");
     }
   }
@@ -143,9 +144,9 @@ export const RegisterUser = () => {
       setErrorMsg(null);
 
       const data2 = JSON.parse(response.details);
-
-      // dispatch(setAdminId(data2.userId));
-      // dispatch(setStoreId(data2.storeId));
+      localStorage.setItem("storeId",data2.storeId);
+      dispatch(setAdminId(data2.userId));
+      dispatch(setStoreId(data2.storeId));
 
       if (data2.storeId == null) {
         navigate("/create-new-shop", {

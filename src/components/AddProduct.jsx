@@ -72,9 +72,9 @@ const AddProduct = () => {
   return (
     <>
       <Card>
-        <span className="flex justify-center ">
-          <Form className="my-3">
-            <h3 className="my-1 text-2xl font-bold">Add a Product</h3>
+        <span className="flex justify-center  ">
+          <Form className="my-3 shadow-lg px-5">
+            <h3 className="my-1 text-2xl font-bold">Product Information</h3>
             {form_data.map((item, index) => (
               <section className="mt-3 " key={index}>
                 <CustomFormLabel label={item.label} />

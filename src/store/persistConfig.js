@@ -1,12 +1,11 @@
-// redux/persistConfig.js
-import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
-import { persistReducer } from 'redux-persist';
+// import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
+// import { persistReducer } from 'redux-persist';
 
-const persistConfig = {
-  key: 'root',
-  storage,
-  // Additional configuration options if needed
-};
+// const persistConfig = {
+//   key: 'root',
+//   storage,
 
-export const persistedReducer = (rootReducer) =>
-  persistReducer(persistConfig, rootReducer);
+// };
+
+// export const persistedReducer = (rootReducer) =>
+//   persistReducer(persistConfig, rootReducer);

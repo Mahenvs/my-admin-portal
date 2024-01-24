@@ -1,20 +1,16 @@
 import { useEffect } from "react";
 import { getHeaders } from "../Utilities/getHeaders";
-import { listOfProducts } from "../store/ProductSlice";
+// import { listOfProducts } from "../store/ProductSlice";
 import { useDispatch,useSelector } from "react-redux";
 
-const useGetProducts = () => {
+const useGetStore = (storeDomain) => {
   const dispatch = useDispatch();
   
-  let storeId = useSelector((store) => store.store.storeId);
+//   const storeDomain = useSelector((store) => store.customer);
 
-  if(!storeId){
-    console.log("storeId",storeId);
-    storeId = localStorage.getItem("storeId");
-    console.log(storeId);
-  }
-  const url = import.meta.env.VITE_API_GET_PRODUCTS+`${storeId}/products`;
-  
+    console.log(storeDomain);
+  const url = import.meta.env.VITE_API_GET_STORE_CUST+storeDomain;
+  console.log(url);
   const fetchData = async () => {
     try {
       const response = await fetch(url, getHeaders());
@@ -22,16 +18,18 @@ const useGetProducts = () => {
         throw new Error("Network response was not ok.");
       }
       const result = await response.json();
+      
+      console.log(result);
 
-      dispatch(listOfProducts(result));
+    //   dispatch(listOfProducts(result));
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
 
   useEffect(() => {
-   storeId && fetchData();
+    fetchData();
   }, []);
 };
 
-export default useGetProducts;
+export default useGetStore;

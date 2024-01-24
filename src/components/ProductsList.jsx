@@ -5,6 +5,7 @@ import useGetProducts from "../Hooks/useGetProducts";
 import { useSelector,useDispatch } from "react-redux";
 import Button from "../UI_Elements/Button";
 import { listOfProductsSorted } from "../store/ProductSlice";
+import TopNav from "./TopNav";
 
 export default function ProductsList() {
   useGetProducts();
@@ -30,7 +31,8 @@ export default function ProductsList() {
   
   return (
     <>
-      <div className="m-16 w-full flex flex-col bg-white shadow-lg px-5 text-black">
+
+      <div className="m-16 w-fu ll flex flex-col bg-white shadow-lg px-5 text-black">      
         <div className="flex gap-2 justify-end mt-2 mb-4">
           <Button class="bg-red-800" title={"Sort⬆⬇"} onClickButton={()=>sorthandler('productName')}></Button>
           <Button class="bg-red-800" title={"Filter"}></Button>

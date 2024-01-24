@@ -1,9 +1,7 @@
 import './App.css';
-// import 'bootstrap/dist/css/bootstrap.min.css';
 import ProductsList from './components/ProductsList';
 import AddProduct from './components/AddProduct';
 
-// import { Login } from './components/Login';
 import { Navigate, Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { RootLayout } from './components/RootLayout';
 import  { useContext } from 'react';
@@ -16,8 +14,8 @@ import CheckOut from './Customer/CheckOut';
 import Home from './Customer/Home';
 import {Provider } from 'react-redux';
 import appStore from './store/appStore';
-import { PersistGate } from 'redux-persist/integration/react';
-import store, { persistor } from './store/appStore'; // Import persistor from store
+// import { PersistGate } from 'redux-persist/integration/react';
+// import store, { persistor } from './store/appStore'; // Import persistor from store
 
 const ProtectedRoute = ({ element }) => {
   const { isLoggedIn } = useContext(AuthContext); // Access authentication state from AuthContext
@@ -63,7 +61,7 @@ const router = createBrowserRouter([
     children: [
       
       {
-        path: '/Customer/home', // Combined path with the parent route
+        path: '/Customer/:storeDomain', // Combined path with the parent route
         element: <Home />, // This will render at '/Customer/shopping-cart'
       },
       {
@@ -80,12 +78,12 @@ function App() {
   return (
     <AuthProvider> 
       <Provider store={appStore}>
-      <PersistGate loading={null} persistor={persistor}>
+      {/* <PersistGate loading={null} persistor={persistor}> */}
 
         <RouterProvider router={router}>
           <Outlet />
         </RouterProvider>
-        </PersistGate>
+        {/* </PersistGate> */}
       </Provider>
     </AuthProvider>
   );
