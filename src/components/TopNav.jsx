@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {useLocation} from 'react-router-dom';
 
 const TopNav = () => {
@@ -23,7 +23,7 @@ const TopNav = () => {
 
   return (
     <>
-      <div className="shadow-lg items-center self-start  px-5 h-12 bg-white-600 flex flex-row w-full my-7 ">
+      <div className="shadow-lg items-center self-start  px-5 h-12 bg-white-600 flex flex-row w-full mt-7 ">
         <h1 className="text-2xl  font-semibold">{navHeading}</h1>
       </div>
     </>

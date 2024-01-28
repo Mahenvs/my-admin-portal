@@ -1,7 +1,7 @@
 const username = 'user';
 const password = 'market';
 const basicAuthToken1 = btoa(`${username}:${password}`);
-const basicAuthToken = btoa(`${import.meta.env.VITE_USER}:${import.meta.env.VITE_PASSWORD}`);
+export const basicAuthToken = btoa(`${import.meta.env.VITE_USER}:${import.meta.env.VITE_PASSWORD}`);
       
 export function getHeaders() {
     return {

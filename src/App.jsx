@@ -9,11 +9,12 @@ import AuthContext from './components/AuthContext';
 import AuthProvider from './components/AuthProvider';
 import NewShop from './Customer/NewShop';
 import { RegisterUser } from './components/RegisterUser';
-import { CustomerRootLayout } from './Customer/CustomerRootLayout';
+// import { CustomerRootLayout } from './Customer/CustomerRootLayout';
 import CheckOut from './Customer/CheckOut';
 import Home from './Customer/Home';
 import {Provider } from 'react-redux';
 import appStore from './store/appStore';
+import {Layout} from './components/Layout';
 // import { PersistGate } from 'redux-persist/integration/react';
 // import store, { persistor } from './store/appStore'; // Import persistor from store
 
@@ -30,6 +31,10 @@ const ProtectedRoute = ({ element }) => {
 };
 
 const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <RegisterUser />,
+  },
   {
     path: '/',
     element: <RootLayout />,
@@ -54,24 +59,7 @@ const router = createBrowserRouter([
   {
     path: '/create-new-shop',
     element:<NewShop/>
-  },
-  {
-    path: '/Customer',
-    element: <CustomerRootLayout />,
-    children: [
-      
-      {
-        path: '/Customer/:storeDomain', // Combined path with the parent route
-        element: <Home />, // This will render at '/Customer/shopping-cart'
-      },
-      {
-        path: 'shopping-cart', // Combined path with the parent route
-        element: <CheckOut />, // This will render at '/Customer/shopping-cart'
-      }
-    ],
-  },
-  
-  
+  }
 ]);
 
 function App() {

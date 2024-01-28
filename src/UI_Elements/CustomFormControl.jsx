@@ -3,7 +3,7 @@ import './CustomFormControl.css';
 
 // eslint-disable-next-line react/display-name
 const CustomFormControl = forwardRef((props,ref) =>{
-    let classes = `w-[25rem] leading-8 p-1 my-2 border-b-2 border-sky-700 rounded text-xl text-gray-900  focus:outline-none focus:border-sky-900 ${props.extraClass}`;
+    let classes = `w-[25rem] leading-8 p-1 my-2 border-b-2 border-sky-700 rounded text-xl text-gray-900  focus:outline-none focus:border-sky-900  justify-end  ${props.extraClass}`;
     
     if(props.class == "error"){
         classes =`w-[25rem] leading-8 p-1 border-b-2 border-red-600 text-stone-950 rounded text-xl  focus:outline-none focus:border-sky-900`;

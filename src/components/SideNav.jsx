@@ -17,10 +17,8 @@ const SideNav = () => {
   const dispatch = useDispatch();
   // change storeId to const later
   let storeId = useSelector((store) => store.store.storeId);
-  console.log(storeId);
 
   if(!storeId){
-    console.log("storeId",storeId);
     storeId = localStorage.getItem("storeId");
     console.log(storeId);
   }
@@ -36,22 +34,16 @@ const SideNav = () => {
         throw new Error("Network response was not ok.");
       }
       const result = await response.json();
-      console.log(result," respons ");
       dispatch(setName(result[0].name));
       document.title = result[0].name+"-admin";
       dispatch(setStoreDomain(result[0].domainResource));
-      console.log(result[0].domainResource);
       setDomain(result[0].domainResource);
-      console.log(storeDomainIn);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
 
-  // const storeDomain = useSelector((store) => store.customer);
-  console.log(storeDomainIn);
   const openShop = () =>{
-    console.log(" 4444444",storeDomainIn);
     const newShopUrl = 'http://localhost:5174/'+storeDomainIn;
     window.open(newShopUrl, '_blank');
     
@@ -59,9 +51,8 @@ const SideNav = () => {
 
   useEffect(() => {
     fetchStoreData();
-
-
   }, []);
+
   return (
     <div className="w-[208px] h-screen gap-[24px]">
       <section className="flex p-3 border-b border-gray-400 my-4">

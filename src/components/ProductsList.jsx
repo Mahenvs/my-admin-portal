@@ -1,11 +1,7 @@
-// import './ProductsList.css';
-// import { products_list } from "../data";
-import { useState } from "react";
 import useGetProducts from "../Hooks/useGetProducts";
 import { useSelector,useDispatch } from "react-redux";
 import Button from "../UI_Elements/Button";
 import { listOfProductsSorted } from "../store/ProductSlice";
-import TopNav from "./TopNav";
 
 export default function ProductsList() {
   useGetProducts();
@@ -13,7 +9,8 @@ export default function ProductsList() {
   const dispatch = useDispatch();
   let productsList = useSelector((store) => store.product.products);
   let sortedProducts = useSelector((store) => store.product.sortedProducts);
-
+  const storeDomain = useSelector((store) => store.customerStore?.storeDomainResource);
+  console.log(storeDomain);
   if(!sortedProducts){
     sortedProducts = productsList
   }
@@ -29,19 +26,23 @@ export default function ProductsList() {
     dispatch(listOfProductsSorted(sortedProducts));
   }
   
+  const navigateProductDetail = (product) => {
+    const newShopUrl = 'http://localhost:5174/'+storeDomain+'/'+product;
+    window.open(newShopUrl,'_blank'); 
+  };
   return (
     <>
 
-      <div className="m-16 w-fu ll flex flex-col bg-white shadow-lg px-5 text-black">      
+      <div className="m-16  flex flex-col bg-white shadow-lg px-5 text-black">      
         <div className="flex gap-2 justify-end mt-2 mb-4">
           <Button class="bg-red-800" title={"Sort⬆⬇"} onClickButton={()=>sorthandler('productName')}></Button>
           <Button class="bg-red-800" title={"Filter"}></Button>
         </div>
         <div className="justify-between items-center p-2 border-b-2 bg-gray-300 rounded ">
           <div className="flex items-center font-semibold self-center align-middle content-center">
-            <span className="w-2/5 border-r- 2 " onClick={() => sorthandler('productName')}>Product</span>
-            <span className="w-1/5 border-r- 2  " onClick={() => sorthandler('productPrice')}>Price</span>
-            <span className="w-1/5 border-r- 2  " onClick={() => sorthandler('productStockQuantity')}>Stock</span>
+            <span className="w-2/5   " onClick={() => sorthandler('productName')}>Product</span>
+            <span className="w-1/5    " onClick={() => sorthandler('productPrice')}>Price</span>
+            <span className="w-1/5    " onClick={() => sorthandler('productStockQuantity')}>Stock</span>
             <span className="w-1/5  ">Action</span>
           </div>
         </div>
@@ -49,17 +50,21 @@ export default function ProductsList() {
         <>
         {sortedProducts?.map((item, index) => (
           <div key={index} className="flex items-center border-b-2 p-2">
-            <span className="w-2/5 p-1 text-md border-r- 2 border-b-1">
+            <span className="w-2/5 p-1 text-md   border-b-1">
               <p className="text-red-600 font-semibold">{item.productName} </p> <p>{item.categoryName}</p>
             </span>
 
-            <span className="w-1/5 p-1 text-md border-r- 2">
+            <span className="w-1/5 p-1 text-md  ">
               $ {item.productPrice}
             </span>
-            <span className="w-1/5 p-1 text-md border-r- 2">
+            <span className="w-1/5 p-1 text-md  ">
               {item.productStockQuantity}
             </span>
-            <span className="w-1/5 p-1 text-md border-r- 2">View</span>
+            <span className="w-1/5 p-1 text-md"
+            onClick={() => navigateProductDetail(item?.productName)}>
+              <Button title="View" className="rounded">
+              View</Button>
+              </span>
           </div>
         ))}</>}
         
