@@ -2,51 +2,40 @@ import './App.css';
 import ProductsList from './components/ProductsList';
 import AddProduct from './components/AddProduct';
 
-import { Navigate, Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { RootLayout } from './components/RootLayout';
-import  { useContext } from 'react';
-import AuthContext from './components/AuthContext';
-import AuthProvider from './components/AuthProvider';
 import NewShop from './Customer/NewShop';
 import { RegisterUser } from './components/RegisterUser';
-// import { CustomerRootLayout } from './Customer/CustomerRootLayout';
-import CheckOut from './Customer/CheckOut';
-import Home from './Customer/Home';
 import {Provider } from 'react-redux';
 import appStore from './store/appStore';
-import {Layout} from './components/Layout';
-// import { PersistGate } from 'redux-persist/integration/react';
-// import store, { persistor } from './store/appStore'; // Import persistor from store
-
-const ProtectedRoute = ({ element }) => {
-  const { isLoggedIn } = useContext(AuthContext); // Access authentication state from AuthContext
-
-  // Check if user is logged in, redirect to login if not
-  if (!isLoggedIn) {
-    return <Navigate to="/login" />;
-  }
-
-  // Render protected component if user is logged in
-  return element;
-};
+import { RedirectHome } from './components/RedirectHome';
+import AddCategory from './components/AddCategory';
 
 const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <RegisterUser />,
-  },
+  
   {
     path: '/',
     element: <RootLayout />,
+    // element: <PrivateRoute element={<ProductsList />} />,
     children: [
       {
-        path: '/products',
+        path:"/",
+        element:<RedirectHome/>
+
+      },
+      {
+        path: '/products/*',
         element:<ProductsList />
-        // element: <ProtectedRoute element={<ProductsList />} />,
+        // element: <PrivateRoute element={<ProductsList />} />,
       },
       {
         path: '/add-product',
         element:<AddProduct/>
+        // element: <ProtectedRoute element={<AddProduct />} />,
+      },
+      {
+        path: '/add-category',
+        element:<AddCategory/>
         // element: <ProtectedRoute element={<AddProduct />} />,
       }      
     ],
@@ -64,16 +53,13 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <AuthProvider> 
       <Provider store={appStore}>
-      {/* <PersistGate loading={null} persistor={persistor}> */}
 
         <RouterProvider router={router}>
           <Outlet />
         </RouterProvider>
-        {/* </PersistGate> */}
       </Provider>
-    </AuthProvider>
+
   );
 }
 

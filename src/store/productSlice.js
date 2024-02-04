@@ -5,7 +5,9 @@ const productSlice = createSlice({
     name: 'product',
     initialState: {
         products: null,
-        sortedProducts:null
+        sortedProducts:null,
+        categoriesList: null,
+        units: null
     },
     reducers:{
 
@@ -15,8 +17,15 @@ const productSlice = createSlice({
         listOfProductsSorted:(state,action) =>{
             state.sortedProducts = action.payload
         },
+        listOfCategories: (state,action) =>{
+            state.categoriesList = action.payload;
+        },
+        listOfUnits: (state,action) =>{
+            state.units = action.payload
+        }
+
     }
 });
 
-export const {listOfProducts,listOfProductsSorted} = productSlice.actions;
+export const {listOfProducts,listOfProductsSorted,listOfCategories,listOfUnits} = productSlice.actions;
 export default productSlice.reducer;

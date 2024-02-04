@@ -3,14 +3,14 @@ import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getHeaders } from "../Utilities/getHeaders";
 import { useEffect } from "react";
-import { setName } from "../store/storeSlice";
+import { setName, setStoreId } from "../store/storeSlice";
 import Button from "../UI_Elements/Button";
 import { setStoreDomain } from "../store/customerSlice";
 import { useState } from "react";
 
 const list = [
   { name: "Products List", to: "/products" },
-  { name: "Add Product", to: "/add-product" },
+  { name: "Add Product", to: "/add-product" }
 ];
 
 const SideNav = () => {
@@ -27,7 +27,7 @@ const SideNav = () => {
   const name = useSelector((store) => store.store.name);
   const [storeDomainIn, setDomain] = useState();
 
-  const fetchStoreData = async () => {
+  const   fetchStoreData = async () => {
     try {
       const response = await fetch(url, getHeaders());
       if (!response.ok) {
@@ -37,6 +37,7 @@ const SideNav = () => {
       dispatch(setName(result[0].name));
       document.title = result[0].name+"-admin";
       dispatch(setStoreDomain(result[0].domainResource));
+      dispatch(setStoreId(result[0].id));
       setDomain(result[0].domainResource);
     } catch (error) {
       console.error("Error fetching data:", error);

@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import CustomFormControl from "../UI_Elements/CustomFormControl";
 import CustomFormLabel from "../UI_Elements/CustomFormLabel";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import shop from "../assets/shop.jpg";
 
 import { getHeaders } from "../Utilities/getHeaders";
@@ -89,7 +89,7 @@ export const RegisterUser = () => {
     console.log(data.status," status ",response.status);
     if(data.status === 201 ){
     // dispatch(setAdminId(response.id));
-
+    localStorage.setItem("userId",response?.userId);
     navigate("/create-new-shop", {
       state: {
         data: response.id,
@@ -129,14 +129,18 @@ export const RegisterUser = () => {
       `${import.meta.env.VITE_USER}:${import.meta.env.VITE_PASSWORD}`
     );
 
-    const url = `${signInUrl}?email=${formData.email}&password=${formData.password}`;
+    const url = `${signInUrl}`;
 
     const data = await fetch(url, {
       method: "POST",
       headers: {
         Authorization: `Basic ${basicAuthToken}`,
-        "Content-Type": "application/x-www-form-urlencoded",
+        "Content-Type": "application/json",
       },
+      body:JSON.stringify({
+        "email": formData.email,
+        "password": formData.password,
+    })
     });
     const response = await data.json();
 
@@ -147,7 +151,8 @@ export const RegisterUser = () => {
       localStorage.setItem("storeId",data2.storeId);
       dispatch(setAdminId(data2.userId));
       dispatch(setStoreId(data2.storeId));
-
+      localStorage.setItem("userId",data2.userId);
+      
       if (data2.storeId == null) {
         navigate("/create-new-shop", {
           state: {
@@ -163,6 +168,9 @@ export const RegisterUser = () => {
     }
   };
 
+  useEffect(()=>{
+    // onLogin1();
+  },[])
   return (
     <>
       <div className="mx-auto  w-1/3 py-10 flex justify-center ">

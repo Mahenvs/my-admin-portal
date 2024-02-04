@@ -1,19 +1,19 @@
 export const form_data = [
     {
-        label: "Product Name",
-        title: "Product Name",
+        label: "Name",
+        title: "Name",
         type: "text",
         id: "Name"
     },
+    // {
+    //     label: "Product Category",
+    //     title: "Product Category",
+    //     type: "dropdown",
+    //     id: "Category"
+    // },
     {
-        label: "Product Category",
-        title: "Product Category",
-        type: "text",
-        id: "Category"
-    },
-    {
-        label: "Product Description",
-        title: "Product Description",
+        label: "Description",
+        title: "Description",
         type: "text",
         id: "Description"
     },
@@ -24,17 +24,17 @@ export const form_data = [
         id: "Price"
     },
     {
-        label: "Discounted Price",
-        title: "Discounted Price",
-        type: "text",
-        id: "DiscountedPrice"
+        label: "Total Stock ",
+        title: "Total Stock",
+        type: "number",
+        id: "Stock"
     },
-    {
-        label: "Product Unit",
-        title: "Product Unit",
-        type: "text",
-        id: "Unit"
-    }
+    // {
+    //     label: "Unit",
+    //     title: "Unit",
+    //     type: "text",
+    //     id: "Unit"
+    // }
 
 
 ]
