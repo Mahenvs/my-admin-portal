@@ -1,17 +1,19 @@
-export default function InfoModal({title,message,onConfirm}){
-    return(<>
-        <dialog open>
+export default function InfoModal({ title, message, onConfirm }) {
+  return (
+    
+      <dialog open>
         <div className="error">
-        <h2>{title}</h2>
-        <p>{message}</p>
-        {onConfirm && (
+          <h2>{title}</h2>
+          <p>{message}</p>
+          {onConfirm && (
             <div id="confirmation-actions">
-            <button onClick={onConfirm} className="button">
+              <button onClick={onConfirm} className="button">
                 Okay
-            </button>
+              </button>
             </div>
-        )}
+          )}
         </div>
-        </dialog>
-    </>)
+      </dialog>
+    
+  );
 }

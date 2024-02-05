@@ -5,7 +5,8 @@ const storeSlice = createSlice({
     initialState:{
         name: null,
         adminid: null,
-        storeId: null
+        storeId: null,
+        profileData: null
     },
     reducers: {
 
@@ -17,11 +18,14 @@ const storeSlice = createSlice({
         },
         setStoreId: (state,action) => {
             console.log("19 store id ",action.payload);
-
             state.storeId = action.payload
+        },
+        setProfileData: (state,action) =>{
+            console.log();
+            state.profileData= action.payload
         }
     }
 })
 
-export const {setName,setAdminId,setStoreId} = storeSlice.actions;
+export const {setName,setAdminId,setStoreId,setProfileData} = storeSlice.actions;
 export default storeSlice.reducer;

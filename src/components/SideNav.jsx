@@ -10,7 +10,9 @@ import { useState } from "react";
 
 const list = [
   { name: "Products List", to: "/products" },
-  { name: "Add Product", to: "/add-product" }
+  { name: "Add Product", to: "/add-product" },
+  { name: "View Profile", to: "/update-profile" }
+  
 ];
 
 const SideNav = () => {

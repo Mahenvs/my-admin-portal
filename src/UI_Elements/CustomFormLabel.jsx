@@ -1,8 +1,6 @@
-// import './CustomFormControl.css';
-
 const CustomFormLabel = (props) =>{
     return <>
-        <span className="mt-1 mb-2  text-xl">
+        <span className={`mt-1 mb-1  text-lg ${props.class}`}>
             {props.label}
         </span>
     </>

@@ -10,6 +10,7 @@ import {Provider } from 'react-redux';
 import appStore from './store/appStore';
 import { RedirectHome } from './components/RedirectHome';
 import AddCategory from './components/AddCategory';
+import Profile from './components/Profile';
 
 const router = createBrowserRouter([
   
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
         path: '/add-category',
         element:<AddCategory/>
         // element: <ProtectedRoute element={<AddProduct />} />,
+      },
+      {
+        path: '/update-profile',
+        element:<Profile/>
       }      
     ],
   },

@@ -4,14 +4,11 @@ import { useState } from "react";
 
 const CustomDropDown = ({ options, inputChange, itemId, itemName }) => {
   const [selectedValue, setSelectedValue] = useState("Open dropdown");
-  console.log(options, "itemId", itemId);
-
+  
   const handler = (event) => {
     const newValue = event.target.value;
-    console.log(event.target.value);
     setSelectedValue(newValue);
     inputChange(newValue);
-    console.log(event.target.value);
   };
   return (
     <div className="mb-3 ">

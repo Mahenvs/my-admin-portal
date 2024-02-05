@@ -9,6 +9,7 @@ import { getHeaders } from "../Utilities/getHeaders";
 import axios from "axios";
 import { setAdminId, setStoreId } from "../store/storeSlice";
 import { useDispatch, useSelector } from "react-redux";
+import CustomForm from "../UI_Elements/CustomForm";
 
 const InitialState = {
   email: "",
@@ -173,11 +174,13 @@ export const RegisterUser = () => {
   },[])
   return (
     <>
-      <div className="mx-auto  w-1/3 py-10 flex justify-center ">
+      {/* <div className="mx-auto w-1/3 py-10 flex justify-center items-center h-screen">
         <form
           id="loginModal"
           className="border-zinc-100 rounded bg-gray-700  px-12 py-4 justify-center flex flex-col text-white "
-        >
+        > */}
+          <CustomForm  class1="bg-gray-700">
+
           <h2 className="flex font-semibold text-[#f7f2f0d1]  items-center mt-4">
             <img src={shop} width="50px" />
             MultiMarketHub
@@ -265,8 +268,9 @@ export const RegisterUser = () => {
               {isLogin ? "Join" : "Login"}
             </button>
           </div>
-        </form>
-      </div>
+          </CustomForm>
+        {/* </form>
+      </div> */}
     </>
   );
 };
