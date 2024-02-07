@@ -10,8 +10,12 @@ import axios from "axios";
 import { setAdminId, setStoreId } from "../store/storeSlice";
 import { useDispatch, useSelector } from "react-redux";
 import CustomForm from "../UI_Elements/CustomForm";
+import { checkFieldEmpty } from "../Utilities/checkFieldEmpty";
+import { compareInputs } from "../Utilities/passwordCompare";
+import { validatingInputs } from "../Utilities/validatingFields";
 
 const InitialState = {
+  firstName:"",
   email: "",
   password: "",
   cnfpassword: "",
@@ -39,6 +43,7 @@ export const RegisterUser = () => {
   });
 
   const toggleAuth = () => {
+    setErrorMsg(null);
     setLogin((isLogin) => !isLogin);
     setFormData(InitialState);
     setEdited({
@@ -68,6 +73,16 @@ export const RegisterUser = () => {
   const headers = getHeaders();
 
   async function Register1() {
+    const errorIs = validatingInputs(formData);
+    setErrorMsg(errorIs);
+    if(errorIs.length >0){
+      return;
+    }
+    if (!compareInputs(formData.password, formData.cnfpassword)) {
+      setErrorMsg("Passwords not matching");
+      return ;
+    }
+    
     const basicAuthToken = btoa(
       `${import.meta.env.VITE_USER}:${import.meta.env.VITE_PASSWORD}`
     );
@@ -82,15 +97,15 @@ export const RegisterUser = () => {
         email: formData.email,
         password: formData.password,
         firstName: formData.firstName,
-        lastName: "last",
-        phoneNumber: 9469856962,
+        lastName: "NA",
+        phoneNumber: 9999999999,
       }),
     });
     const response = await data.json();
     console.log(data.status," status ",response.status);
     if(data.status === 201 ){
     // dispatch(setAdminId(response.id));
-    localStorage.setItem("userId",response?.userId);
+    localStorage.setItem("userId",response?.id);
     navigate("/create-new-shop", {
       state: {
         data: response.id,
@@ -104,35 +119,40 @@ export const RegisterUser = () => {
     }
   }
 
-  async function getCategories(data2) {
-    const category_url =
-      import.meta.env.VITE_PRODUCT_CATEGORIES + data2.storeId + "/categories";
-    await axios
-      .get(category_url, {
-        headers: {
-          Authorization: headers,
-        },
-      })
-      .then((response) => {
+  // async function getCategories(data2) {
+  //   const category_url =
+  //     import.meta.env.VITE_PRODUCT_CATEGORIES + data2.storeId + "/categories";
+  //   await axios
+  //     .get(category_url, {
+  //       headers: {
+  //         Authorization: headers,
+  //       },
+  //     })
+  //     .then((response) => {
 
-        setCategories(response.data);
+  //       setCategories(response.data);
 
-        return response.data;
-      })
-      .catch((error) => {
-        // Handle error
-      });
-    navigate("/customer");
-  }
+  //       return response.data;
+  //     })
+  //     .catch((error) => {
+  //       // Handle error
+  //     });
+  //   navigate("/customer");
+  // }
 
   const Login = async () => {
+    const errorIs = validatingInputs(formData);
+    setErrorMsg(errorIs);
+    if(errorIs.length >0){
+      return;
+    }
     const basicAuthToken = btoa(
       `${import.meta.env.VITE_USER}:${import.meta.env.VITE_PASSWORD}`
     );
 
-    const url = `${signInUrl}`;
+    // const url = `${signInUrl}`;
 
-    const data = await fetch(url, {
+    const data = await fetch(signInUrl, {
       method: "POST",
       headers: {
         Authorization: `Basic ${basicAuthToken}`,
@@ -169,9 +189,6 @@ export const RegisterUser = () => {
     }
   };
 
-  useEffect(()=>{
-    // onLogin1();
-  },[])
   return (
     <>
       {/* <div className="mx-auto w-1/3 py-10 flex justify-center items-center h-screen">
@@ -196,7 +213,8 @@ export const RegisterUser = () => {
                 // class={mailError ? "error" : ""}
                 type="text"
                 name="name"
-                inputBlur={(event) =>
+                value={formData.firstName}
+                inputChange={(event) =>
                   handlerInput("firstName", event.target.value)
                 }
               />
@@ -210,7 +228,8 @@ export const RegisterUser = () => {
             class={mailError ? "error" : ""}
             type="email"
             name="email"
-            inputBlur={(event) => handlerInput("email", event.target.value)}
+            value={formData.email}
+            inputChange={(event) => handlerInput("email", event.target.value)}
           />
           {mailError && (
             <p className="text-red-500 font-semibold -mt-3 mb-2">
@@ -223,6 +242,7 @@ export const RegisterUser = () => {
             class={pswdError ? "error" : ""}
             type="password"
             name="pswd"
+            value={formData.password}
             inputChange={(event) =>
               handlerInput("password", event.target.value)
             }
@@ -241,6 +261,7 @@ export const RegisterUser = () => {
               <CustomFormLabel label="Confirm Password" />
               <CustomFormControl
                 type="password"
+                value={formData.cnfpassword}
                 inputChange={(event) =>
                   handlerInput("cnfpassword", event.target.value)
                 }

@@ -4,7 +4,7 @@ import AddProduct from './components/AddProduct';
 
 import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { RootLayout } from './components/RootLayout';
-import NewShop from './Customer/NewShop';
+import NewShop from './components/NewShop';
 import { RegisterUser } from './components/RegisterUser';
 import {Provider } from 'react-redux';
 import appStore from './store/appStore';

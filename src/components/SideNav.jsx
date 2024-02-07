@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getHeaders } from "../Utilities/getHeaders";
 import { useEffect } from "react";
-import { setName, setStoreId } from "../store/storeSlice";
+import { setCurrentPath, setName, setStoreId } from "../store/storeSlice";
 import Button from "../UI_Elements/Button";
 import { setStoreDomain } from "../store/customerSlice";
 import { useState } from "react";
@@ -27,6 +27,8 @@ const SideNav = () => {
   const url = import.meta.env.VITE_GET_STORE_BY_ID+`${storeId}`;
 
   const name = useSelector((store) => store.store.name);
+  const pathIs = useSelector((store) => store.store.currentPath);
+
   const [storeDomainIn, setDomain] = useState();
 
   const   fetchStoreData = async () => {
@@ -51,6 +53,11 @@ const SideNav = () => {
     window.open(newShopUrl, '_blank');
     
   }
+  const handleCurrentPath = (path) =>{
+    // setCurrentPath()
+    console.log(path);
+    dispatch(setCurrentPath(path));
+  }
 
   useEffect(() => {
     fetchStoreData();
@@ -63,12 +70,19 @@ const SideNav = () => {
           {name} <Button onClickButton={openShop} class="px-[0.7rem] py-0" title={"↗"}></Button>
         </span>
       </section>
-      <div className="gap-[4px]  flex flex-col items-center">
+      <div className="gap-[4px]  flex flex-col items-center text-center m-auto align-middle min-h-fit ">
+      {/* <li className={activeCategory === item?.categoryId  ? "p-1 bg-gradient-to-r from-white to-blue-200 w-full" : "bg-white p-1"} 
+              onClick={() => handleActiveCategory(item?.categoryId)}>
+                <NavLink to={"?categoryId="+item?.categoryId}>
+                  {item?.categoryName}({item?.productCount}) 
+                </NavLink>
+              </li> */}
         {list.map((item, index) => (
-          <li key={index} className="inline items-center rounded-sm px-2 ">
+          <li key={index} className={pathIs === item?.to ? "text-center align-middle inline items-center rounded-sm px-2 bg-gray-100 w-full " : "list-none"}
+          onClick={()=>handleCurrentPath(item?.to)}>
             <NavLink
               to={item.to}
-              className="text-lg leading-5 w-[40px] font-normal text-white"
+              className={pathIs === item?.to ? "text-lg font-normal text-slate-800 rounded-sm px-1 bg-gray-100 w-full flex justify-center p-2" : " p-2 flex rounded-sm px-2 text-white text-lg"}
             >
               {item.name}
             </NavLink>

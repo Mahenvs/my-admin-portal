@@ -6,7 +6,8 @@ const storeSlice = createSlice({
         name: null,
         adminid: null,
         storeId: null,
-        profileData: null
+        profileData: null,
+        currentPath: null
     },
     reducers: {
 
@@ -23,9 +24,12 @@ const storeSlice = createSlice({
         setProfileData: (state,action) =>{
             console.log();
             state.profileData= action.payload
+        },
+        setCurrentPath: (state,action) => {
+            state.currentPath = action.payload;
         }
     }
 })
 
-export const {setName,setAdminId,setStoreId,setProfileData} = storeSlice.actions;
+export const {setName,setAdminId,setStoreId,setProfileData,setCurrentPath} = storeSlice.actions;
 export default storeSlice.reducer;

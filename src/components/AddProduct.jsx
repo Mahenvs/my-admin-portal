@@ -12,7 +12,8 @@ import { basicAuthToken } from "../Utilities/getHeaders";
 import CustomDropDown from "../UI_Elements/CustomDropDown";
 import { useGetCategories } from "../Hooks/useGetCategories";
 import useGetUnits from "../Hooks/useGetUnits";
-
+import { setCurrentPath } from "../store/storeSlice";
+import { useDispatch } from "react-redux";
 const AddProduct = () => {
   useGetCategories();
   useGetUnits();
@@ -20,6 +21,7 @@ const AddProduct = () => {
   const navigate = useNavigate();
   // const [selectedFile, setSelectedFile] = useState(null);
   const [uploadedImgUrl, setuploadedImgUrl] = useState(null);
+  const dispatch = useDispatch();
 
   const [formValue, setFormValue] = useState({
     Name: "",
@@ -87,6 +89,7 @@ const AddProduct = () => {
       if (!response.ok) {
         throw new Error("Network response was not ok.");
       }
+      dispatch(setCurrentPath("/products"));
       navigate("/products");
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -105,7 +108,7 @@ const AddProduct = () => {
             <h3 className="mt-1 text-2xl font-bold">Product Information</h3>
             <section className="mt-3 flex gap-4 items-center justify-end  ">
               <CustomFormLabel label={"Category"} />
-              {!isNewCategory ? (
+              {isNewCategory ? (
                 <CustomFormControl
                   title={"Category"}
                   type="text"
@@ -130,7 +133,7 @@ const AddProduct = () => {
                 setNewCategory(!isNewCategory);
               }}
             >
-              {isNewCategory
+              {!isNewCategory
                 ? "Don't find a category? Add New."
                 : "Use existing categories?"}
             </p>

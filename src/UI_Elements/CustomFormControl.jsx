@@ -14,6 +14,7 @@ const CustomFormControl = forwardRef((props,ref) =>{
             onChange={props.inputChange}
             onBlur={props.inputBlur}
             disabled ={props.disabledOrNot}
+            value={props.value}
             />
     </span>
 })
