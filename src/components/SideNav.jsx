@@ -17,7 +17,6 @@ const list = [
 
 const SideNav = () => {
   const dispatch = useDispatch();
-  // change storeId to const later
   let storeId = useSelector((store) => store.store.storeId);
 
   if(!storeId){
@@ -49,13 +48,12 @@ const SideNav = () => {
   };
 
   const openShop = () =>{
-    const newShopUrl = 'http://localhost:5174/'+storeDomainIn;
+    const port =import.meta.env.VITE_API_PORT;
+    const newShopUrl = 'http://localhost:'+port+storeDomainIn;
     window.open(newShopUrl, '_blank');
     
   }
   const handleCurrentPath = (path) =>{
-    // setCurrentPath()
-    console.log(path);
     dispatch(setCurrentPath(path));
   }
 

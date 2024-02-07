@@ -16,7 +16,7 @@ const PrivateRoute = ({ element: Element, ...rest }) => {
           isAuthenticated() ? (
             <Element />
           ) : (
-            <Navigate to="/register" replace />
+            <Navigate to="/auth" replace />
           )
         }
       />

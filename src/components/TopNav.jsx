@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation ,useNavigate} from "react-router-dom";
 
 const TopNav = () => {
   const location = useLocation();
@@ -20,6 +20,7 @@ const TopNav = () => {
   }, [location]);
 
   const dropdownRef = useRef(null);
+  const navigate = useNavigate();
 
   const handleClickOutside = (event) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -38,6 +39,10 @@ const TopNav = () => {
     setChecked(!isChecked);
   };
   
+  const logOutHandler = () =>{
+    localStorage.removeItem("userId");
+    navigate("/auth?signIn")
+  }
   return (
     <div className="w-full relative" ref={dropdownRef}>
       <div className="shadow-lg text-center items-center px-5 h-[4.8rem] bg-white-600 flex flex-row w-full justify-between">
@@ -57,7 +62,7 @@ const TopNav = () => {
             <input
               type="checkbox"
               id="myCheckbox"
-
+              onChange={handleCheckboxChange}
               className="opacity-0 cursor-pointer"
               checked={isChecked}
             />
@@ -68,7 +73,7 @@ const TopNav = () => {
               >{isChecked ? "Open" : "Close"}</div>
             </label>
           </div>
-          <button className="pt-2 cursor-pointer">Logout</button>
+          <button className="pt-2 cursor-pointer" onClick={logOutHandler}>Logout</button>
         </div>
       )}
     </div>

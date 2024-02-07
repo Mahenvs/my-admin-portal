@@ -1,7 +1,7 @@
 import useGetProducts from "../Hooks/useGetProducts";
 import { useSelector,useDispatch } from "react-redux";
 import Button from "../UI_Elements/Button";
-import { listOfProductsSorted } from "../store/ProductSlice";
+import { listOfProductsSorted } from "../../src/store/productSlice";
 
 export default function ProductsList() {
   useGetProducts();

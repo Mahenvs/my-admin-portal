@@ -1,3 +1,5 @@
+// docker build -t react-app:dev .
+// docker run -p 5173:5173 react-app-cust:dev
 import './App.css';
 import ProductsList from './components/ProductsList';
 import AddProduct from './components/AddProduct';
@@ -17,7 +19,6 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <RootLayout />,
-    // element: <PrivateRoute element={<ProductsList />} />,
     children: [
       {
         path:"/",
@@ -47,7 +48,7 @@ const router = createBrowserRouter([
   },
 
   {
-    path: '/register',
+    path: '/auth',
     element: <RegisterUser />,
   },
   {

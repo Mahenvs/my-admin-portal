@@ -9,11 +9,17 @@ export function RedirectHome() {
   
     useEffect(()=>{
         handleLogin()
-    })
+    },[])
     const handleLogin = () => {
-      if (localStorage.getItem("userId") != undefined) {
+      console.log(localStorage.getItem("userId") != undefined,"loggedin",!localStorage.getItem("userId"));
+      if (!localStorage.getItem("userId")) {
         console.log("loggedin");
         setLoggedIn(true);
+        navigate(`/auth?signIn`);
+      }
+      else{
+        navigate(`/products`);
+        return null;  
       }
     };
     if (isLoggedIn == true) {
