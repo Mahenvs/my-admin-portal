@@ -18,11 +18,9 @@ const storeSlice = createSlice({
             state.adminid = action.payload;
         },
         setStoreId: (state,action) => {
-            console.log("19 store id ",action.payload);
             state.storeId = action.payload
         },
         setProfileData: (state,action) =>{
-            console.log();
             state.profileData= action.payload
         },
         setCurrentPath: (state,action) => {

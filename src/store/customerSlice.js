@@ -13,11 +13,9 @@ const customerSlice = createSlice({
             state.name = action.payload;
         },
         setStoreDomain: (state,action) =>{
-            console.log("domain ",action.payload);
             state.storeDomainResource = action.payload;
         },
         setStoreId: (state,action) => {
-            console.log("19 store id ",action.payload);
             state.storeId = action.payload
         }
     }

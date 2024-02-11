@@ -63,12 +63,12 @@ const SideNav = () => {
 
   return (
     <div className="w-[208px] h-screen gap-[24px]">
-      <section className="flex p-3 border-b border-gray-400 my-4">
-        <span className=" text-red-500 mx-auto self-center text-center font-semibold text-base">
-          {name} <Button onClickButton={openShop} class="px-[0.7rem] py-0" title={"↗"}></Button>
-        </span>
+      <section className="flex p-3 border-b border-gray-400 my-4 w-50">
+        <span className=" text-red-500 mx-auto self-center text-center font-semibold text-base truncate">
+          {name} 
+        </span><Button onClickButton={openShop} class="px-[0.7rem] py-0" title={"↗"}></Button>
       </section>
-      <div className="gap-[4px]  flex flex-col items-center text-center m-auto align-middle min-h-fit ">
+      <div className="gap-[4px] flex flex-col items-center text-center m-auto align-middle min-h-fit ">
       {/* <li className={activeCategory === item?.categoryId  ? "p-1 bg-gradient-to-r from-white to-blue-200 w-full" : "bg-white p-1"} 
               onClick={() => handleActiveCategory(item?.categoryId)}>
                 <NavLink to={"?categoryId="+item?.categoryId}>
@@ -76,11 +76,11 @@ const SideNav = () => {
                 </NavLink>
               </li> */}
         {list.map((item, index) => (
-          <li key={index} className={pathIs === item?.to ? "text-center align-middle inline items-center rounded-sm px-2 bg-gray-100 w-full " : "list-none"}
+          <li key={index} className={pathIs === item?.to ? "text-center align-middle inline items-center rounded-sm px-2 bg-gray-200 w-full " : "list-none"}
           onClick={()=>handleCurrentPath(item?.to)}>
             <NavLink
               to={item.to}
-              className={pathIs === item?.to ? "text-lg font-normal text-slate-800 rounded-sm px-1 bg-gray-100 w-full flex justify-center p-2" : " p-2 flex rounded-sm px-2 text-white text-lg"}
+              className={pathIs === item?.to ? "text-lg font-normal text-slate-800 rounded-sm px-1 bg-gray-200 w-full flex justify-center p-2" : " p-2 flex rounded-sm px-2 text-white text-lg"}
             >
               {item.name}
             </NavLink>

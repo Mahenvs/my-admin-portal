@@ -9,7 +9,7 @@ const AddCategory = () => {
 
   useGetCategories();
   const categoriesList = useSelector(store => store.product.categoriesList);
-  console.log(categoriesList);
+  
   return (
     <div>
         <h3 className="mt-1 text-2xl font-bold">Category Information</h3>

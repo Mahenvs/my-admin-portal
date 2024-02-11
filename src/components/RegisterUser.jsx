@@ -69,7 +69,6 @@ export const RegisterUser = () => {
 
   const pswdError = isEdited.password && formData.password.length < 5;
   const navigate = useNavigate();
-  const headers = getHeaders();
 
   async function Register1() {
     const errorIs = validatingInputs(formData);
@@ -111,7 +110,7 @@ export const RegisterUser = () => {
       });
     } else {
       setErrorMsg(response.message);
-      console.log(response.message);
+
       throw new Error("Status is not 200");
     }
   }
@@ -148,7 +147,7 @@ export const RegisterUser = () => {
       dispatch(setAdminId(data2.userId));
       dispatch(setStoreId(data2.storeId));
       localStorage.setItem("userId", data2.userId);
-
+      
       if (data2.storeId == null) {
         navigate("/create-new-shop", {
           state: {
@@ -166,11 +165,6 @@ export const RegisterUser = () => {
 
   return (
     <>
-      {/* <div className="mx-auto w-1/3 py-10 flex justify-center items-center h-screen">
-        <form
-          id="loginModal"
-          className="border-zinc-100 rounded bg-gray-700  px-12 py-4 justify-center flex flex-col text-white "
-        > */}
       <CustomForm class1="bg-gray-700">
         <h2 className="flex font-semibold text-[#f7f2f0d1]  items-center mt-4">
           <img src={shop} width="50px" />
@@ -262,8 +256,7 @@ export const RegisterUser = () => {
           </button>
         </div>
       </CustomForm>
-      {/* </form>
-      </div> */}
+      
     </>
   );
 };

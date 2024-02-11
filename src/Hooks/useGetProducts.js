@@ -9,9 +9,7 @@ const useGetProducts = () => {
   let storeId = useSelector((store) => store.store.storeId);
 
   if(!storeId){
-    console.log("storeId",storeId);
     storeId = localStorage.getItem("storeId");
-    console.log(storeId);
   }
   const url = import.meta.env.VITE_API_GET_PRODUCTS+`${storeId}/products`;
   

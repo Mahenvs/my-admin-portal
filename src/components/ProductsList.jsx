@@ -10,7 +10,7 @@ export default function ProductsList() {
   let productsList = useSelector((store) => store.product.products);
   let sortedProducts = useSelector((store) => store.product.sortedProducts);
   const storeDomain = useSelector((store) => store.customerStore?.storeDomainResource);
-  console.log(storeDomain);
+  
   if(!sortedProducts){
     sortedProducts = productsList
   }
@@ -40,10 +40,10 @@ export default function ProductsList() {
         </div>
         <div className="justify-between items-center p-2 border-b-2 bg-gray-300 rounded ">
           <div className="flex items-center font-semibold self-center align-middle content-center">
-            <span className="w-2/5   " onClick={() => sorthandler('productName')}>Product</span>
-            <span className="w-1/5    " onClick={() => sorthandler('productPrice')}>Price</span>
-            <span className="w-1/5    " onClick={() => sorthandler('productStockQuantity')}>Stock</span>
-            <span className="w-1/5  ">Action</span>
+            <span className="w-2/5 " onClick={() => sorthandler('productName')}>Product</span>
+            <span className="w-1/5 " onClick={() => sorthandler('productPrice')}>Price</span>
+            <span className="w-1/5 " onClick={() => sorthandler('productStockQuantity')}>Stock</span>
+            <span className="w-1/5 ">Action</span>
           </div>
         </div>
       {!sortedProducts ? <h1 className="text-2xl text-center p-3 text-gray-800 font-semibold">Please add products</h1> : 

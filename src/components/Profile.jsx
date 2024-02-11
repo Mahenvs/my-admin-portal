@@ -14,7 +14,7 @@ const InitialState = {
 const Profile = () => {
   useGetProfile();
   const profileInfo = useSelector((store) => store.store.profileData);
-  console.log(profileInfo);
+  
   let profile;
   const [formData, setFormData] = useState(InitialState);
 
@@ -45,19 +45,28 @@ const Profile = () => {
         {"Profile Information"}
       </h3>
       {profileInfo?.map((item, index) => (
-        <div className="mx-auto flex flex-col gap-3" key={index}>
-           {[
-      { label: "User Name :", value: item?.email },
-      { label: "Store ID :", value: item?.id },
-      { label: "First Name :", value: item?.firstName },
-      { label: "Last Name :", value: item?.lastName },
-      { label: "Address :", value: item?.address },
-    ].map((field, fieldIndex) => (
-      <span className="flex justify-between items-center gap-10" key={fieldIndex}>
-        <CustomFormLabel label={field.label} class="font-medium text-lg"/>
-        <CustomFormLabel label={field.value} class="font-medium text-xl font-mono" />
-      </span>
-    ))}
+        <div className="mx-auto flex flex-col text-slate-900 gap-3" key={index}>
+          {[
+            { label: "User Name :", value: item?.email },
+            { label: "Store ID :", value: item?.id },
+            { label: "First Name :", value: item?.firstName },
+            { label: "Last Name :", value: item?.lastName ? 'NA' : 'NA'},
+            { label: "Address :", value: item?.address ? '' : 'NA' },
+          ].map((field, fieldIndex) => (
+            <span
+              className="flex justify-between items-center gap-4"
+              key={fieldIndex}
+            >
+              <CustomFormLabel
+                label={field.label}
+                class="font-medium text-lg flex justify-center "
+              />
+              <CustomFormLabel
+                label={field.value}
+                class="font-medium text-xl font-mono"
+              />
+            </span>
+          ))}
         </div>
       ))}
       {/* <Button title="Save" class="mt-5"></Button> */}

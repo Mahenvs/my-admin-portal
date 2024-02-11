@@ -9,11 +9,10 @@ export const useGetProfile = () => {
   const dispatch = useDispatch();
   const getProfile = async () => {
     const getInfoUrl = import.meta.env.VITE_USER_GET_INFO + userId;
-    console.log(getInfoUrl);
+    
     await axios.get(getInfoUrl, getHeaders())
     .then((response) => {
-        console.log(response.data);
-      
+        
         dispatch(setProfileData(response.data));
         // return response.data;
       })

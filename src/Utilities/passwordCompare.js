@@ -5,7 +5,4 @@ export const compareInputs = (input,input2) =>{
     }
 
     return false;
-    // else{
-
-    // }
 }

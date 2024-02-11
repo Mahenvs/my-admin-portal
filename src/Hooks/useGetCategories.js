@@ -12,10 +12,10 @@ export const useGetCategories = () => {
     console.log(category_url);
     await axios.get(category_url, getHeaders())
     .then((response) => {
-        console.log(response.data);
+
       const data1  = [{categoryId:'null',categoryName:'Open dropdown'},...response.data]
-      console.log(data1);
-        dispatch(listOfCategories(data1));
+      
+      dispatch(listOfCategories(data1));
         // return response.data;
       })
       .catch((error) => {

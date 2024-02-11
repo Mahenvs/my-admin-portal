@@ -4,12 +4,9 @@ import { useDispatch,useSelector } from "react-redux";
 
 const useGetStore = (storeDomain) => {
   const dispatch = useDispatch();
-  
-//   const storeDomain = useSelector((store) => store.customer);
-
-    console.log(storeDomain);
+   
   const url = import.meta.env.VITE_API_GET_STORE_CUST+storeDomain;
-  console.log(url);
+  
   const fetchData = async () => {
     try {
       const response = await fetch(url, getHeaders());
