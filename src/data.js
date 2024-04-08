@@ -5,12 +5,6 @@ export const form_data = [
         type: "text",
         id: "Name"
     },
-    // {
-    //     label: "Product Category",
-    //     title: "Product Category",
-    //     type: "dropdown",
-    //     id: "Category"
-    // },
     {
         label: "Description",
         title: "Description",

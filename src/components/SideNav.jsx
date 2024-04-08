@@ -11,6 +11,7 @@ import { useState } from "react";
 const list = [
   { name: "Products List", to: "/products" },
   { name: "Add Product", to: "/add-product" },
+  { name: "All Orders", to: "/order-view" },
   { name: "View Profile", to: "/update-profile" }
   
 ];
@@ -48,8 +49,8 @@ const SideNav = () => {
   };
 
   const openShop = () =>{
-    const port =import.meta.env.VITE_API_PORT;
-    const newShopUrl = 'http://localhost:'+port+storeDomainIn;
+    const newShopUrl =import.meta.env.VITE_CUST_URL+storeDomainIn;
+    // const newShopUrl = 'http://localhost:'+port+storeDomainIn;
     window.open(newShopUrl, '_blank');
     
   }

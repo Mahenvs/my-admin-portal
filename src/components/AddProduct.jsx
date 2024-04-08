@@ -2,27 +2,26 @@ import Form from "react-bootstrap/Form";
 import Button from "../UI_Elements/Button";
 import { form_data } from "../data";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import CustomFormControl from "../UI_Elements/CustomFormControl";
 import CustomFormLabel from "../UI_Elements/CustomFormLabel";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Card from "../UI_Elements/Card";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { basicAuthToken } from "../Utilities/getHeaders";
 import CustomDropDown from "../UI_Elements/CustomDropDown";
 import { useGetCategories } from "../Hooks/useGetCategories";
 import useGetUnits from "../Hooks/useGetUnits";
 import { setCurrentPath } from "../store/storeSlice";
-import { useDispatch } from "react-redux";
+
 const AddProduct = () => {
   useGetCategories();
   useGetUnits();
   const storeId = useSelector((store) => store.store.storeId);
   const navigate = useNavigate();
-  // const [selectedFile, setSelectedFile] = useState(null);
+
   const [uploadedImgUrl, setuploadedImgUrl] = useState(null);
   const dispatch = useDispatch();
-
+  const imgUrl = import.meta.env.VITE_API_URL_PRODUCT;
   const [formValue, setFormValue] = useState({
     Name: "",
     Category: "",
@@ -52,7 +51,7 @@ const AddProduct = () => {
         body: formData,
         redirect: "follow",
       };
-      fetch("http://192.168.1.254:8100/products/images/upload", requestOptions)
+      fetch(imgUrl+"/products/images/upload", requestOptions)
         .then((response) => response.text())
         .then((result) => {
           setuploadedImgUrl(result);

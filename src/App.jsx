@@ -13,6 +13,7 @@ import appStore from './store/appStore';
 import { RedirectHome } from './components/RedirectHome';
 import AddCategory from './components/AddCategory';
 import Profile from './components/Profile';
+import OrdersView from './components/OrdersView';
 
 const router = createBrowserRouter([
   
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
         path: '/add-category',
         element:<AddCategory/>
         // element: <ProtectedRoute element={<AddProduct />} />,
+      },
+      {
+        path: '/order-view',
+        element:<OrdersView/>        
       },
       {
         path: '/update-profile',
