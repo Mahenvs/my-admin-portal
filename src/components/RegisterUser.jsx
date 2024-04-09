@@ -135,6 +135,7 @@ export const RegisterUser = () => {
       body: JSON.stringify({
         email: formData.email,
         password: formData.password,
+        storeId:0
       })
     });
     const response = await data.json();
