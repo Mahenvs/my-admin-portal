@@ -18,6 +18,7 @@ const AddProduct = () => {
   useGetUnits();
   const storeId = useSelector((store) => store.store.storeId);
   const navigate = useNavigate();
+  const [errorMsg,setErrorMsg] = useState(null);
 
   const [uploadedImgUrl, setuploadedImgUrl] = useState(null);
   const dispatch = useDispatch();
@@ -32,7 +33,7 @@ const AddProduct = () => {
   });
   let categoriesList = useSelector((store) => store.product.categoriesList);
   let units = useSelector((store) => store.product.units);
-  const handlerInput = (event, flag) => {
+  const handlerInput = async (event, flag) => {
     console.log(event.target.value, event.target.id);
     setFormValue({
       ...formValue,
@@ -51,12 +52,20 @@ const AddProduct = () => {
         body: formData,
         redirect: "follow",
       };
-      fetch(imgUrl+"/products/images/upload", requestOptions)
-        .then((response) => response.text())
-        .then((result) => {
-          setuploadedImgUrl(result);
-        })
-        .catch((error) => console.log("error", error));
+      try {
+       const resp = await fetch(imgUrl+"/products/images/upload", requestOptions);
+        const result =  await resp.text()       
+          if(resp.status == 200){
+            setuploadedImgUrl(result);
+            setErrorMsg(null)
+          }
+          else{
+            setErrorMsg(JSON.parse(result)?.detail);
+          }
+          
+      } catch (error) {
+        console.log("error ",error);
+      }
     }
   };
 
@@ -139,7 +148,7 @@ const AddProduct = () => {
 
             <section className="mt-3 flex gap-4 items-center justify-end  ">
               <CustomFormLabel label="Image" />
-              <div className="w-[25rem]  p-1 my-2 rounded text-xl   justify-end">
+              <div className="w-[25rem]  p-1 my-2 rounded text-xl   ">
                 <input
                   className="rounded mt-3"
                   type="file"
@@ -147,7 +156,9 @@ const AddProduct = () => {
                 />
               </div>
             </section>
-            <input type="file" className="hidden border" id="file-input" />
+            {errorMsg != null && (
+            <span className="text-red-500 font-semibold flex justify-end">{errorMsg}</span>)}
+            <input type="file" className="hidden border focus:outline-none " id="file-input" />
             {form_data.map((item, index) => (
               <section
                 className=" mt-3 flex gap-4 items-center justify-end  "
