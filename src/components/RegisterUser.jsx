@@ -2,15 +2,12 @@ import { Link, useNavigate } from "react-router-dom";
 
 import CustomFormControl from "../UI_Elements/CustomFormControl";
 import CustomFormLabel from "../UI_Elements/CustomFormLabel";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import shop from "../assets/shop.jpg";
 
-import { getHeaders } from "../Utilities/getHeaders";
-import axios from "axios";
 import { setAdminId, setStoreId } from "../store/storeSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import CustomForm from "../UI_Elements/CustomForm";
-import { checkFieldEmpty } from "../Utilities/checkFieldEmpty";
 import { compareInputs } from "../Utilities/passwordCompare";
 import { validatingInputs } from "../Utilities/validatingFields";
 
