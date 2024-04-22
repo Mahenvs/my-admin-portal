@@ -64,7 +64,7 @@ const SideNav = () => {
 
   return (
     <div className="w-[208px] h-screen gap-[24px]">
-      <section className="flex justify-around px-1 py-2.5 border-b border-gray-400 my-4 w-50">
+      <section className="flex justify-around px-1 py-2.5 border-b border-gray-300 my-4 w-50">
         <img src={imageIs} alt="" width={40} height={40}/>
         <span className=" text-red-500 self-center text-center font-semibold text-base truncate">
           {name?.toUpperCase()}
