@@ -15,33 +15,11 @@ const Profile = () => {
   useGetProfile();
   const profileInfo = useSelector((store) => store.store.profileData);
   
-  let profile;
-  const [formData, setFormData] = useState(InitialState);
-
-  const [isEdited, setEdited] = useState({
-    email: false,
-    password: false,
-    cnfpassword: false,
-  });
-
-  const handlerInput = (flag, value) => {
-    setFormData((prevValues) => ({
-      ...prevValues,
-      [flag]: value,
-    }));
-
-    setEdited((prevValues) => ({
-      ...prevValues,
-      [flag]: true,
-    }));
-  };
   useEffect(() => {
-    profile = profileInfo?.[0];
-    console.log(profile);
   }, [profileInfo]);
   return (
-    <CustomForm class1="shadow-md border text-slate-800 border-slate-400">
-      <h3 className="text-slate-800 text-2xl  justify-start  mt-[1.5rem] font-bold mb-[1rem]">
+    <CustomForm class1="shadow-md border text-slate-800 border-slate-400 shadow-slate-400">
+      <h3 className="text-slate-800 text-2xl justify-start font-bold mb-[1rem]">
         {"Profile Information"}
       </h3>
       {profileInfo?.map((item, index) => (
@@ -50,8 +28,9 @@ const Profile = () => {
             { label: "User Name :", value: item?.email },
             { label: "Store ID :", value: item?.id },
             { label: "First Name :", value: item?.firstName },
-            { label: "Last Name :", value: item?.lastName ? 'NA' : 'NA'},
-            { label: "Address :", value: item?.address ? '' : 'NA' },
+            { label: "Last Name :", value: item?.lastName ? item?.lastName : 'NA'},
+            { label: "Address :", value: item?.address ? item?.address : 'NA' },
+            { label: "Mobile  :", value: item?.phoneNumber ? item?.phoneNumber : 'NA' },
           ].map((field, fieldIndex) => (
             <span
               className="flex justify-between items-center gap-4"
@@ -69,7 +48,6 @@ const Profile = () => {
           ))}
         </div>
       ))}
-      {/* <Button title="Save" class="mt-5"></Button> */}
     </CustomForm>
   );
 };

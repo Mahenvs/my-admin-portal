@@ -35,7 +35,7 @@ export default function ProductsList() {
   };
   return (
     <>
-      <div className="m-16  flex flex-col bg-white shadow-lg px-5 text-black">
+      <div className="m-16  flex flex-col bg-white shadow-lg px-5 text-black shadow-slate-400">
         <div className="flex gap-2 justify-end mt-2 mb-4">
           <Button
             class="bg-red-800"

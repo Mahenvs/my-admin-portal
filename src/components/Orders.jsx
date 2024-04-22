@@ -42,6 +42,7 @@ const Orders = ({
     navigate("" + order, {
       state: {
         products: item,
+        orderId:order,
         purchaseDetails: {
           dateOfPurchase: orderDateAndTime,
           orderTotalAmount: orderTotalAmount,
@@ -51,7 +52,7 @@ const Orders = ({
   };
   return (
     <>
-      <Card class="w-full rounded">
+      <Card class="w-full rounded shadow-slate-400 shadow-lg">
         <div className="flex text-lg text-stone-900 font-medium  justify-between">
           <div className="flex ">
             <h1 className="">Order #{orderId}</h1>

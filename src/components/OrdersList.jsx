@@ -3,6 +3,7 @@ import useGetAllOrders from "../Hooks/useGetAllOrders";
 import { useSelector } from "react-redux";
 import Orders from "./Orders";
 import { Outlet, useLocation } from "react-router-dom";
+import BreadCrumbs from "./BreadCrumbs";
 
 const OrdersList = () => {
   useGetAllOrders();
@@ -10,8 +11,9 @@ const OrdersList = () => {
   const location = useLocation();
   
   return (
-    <div className={`flex flex-col mx-56 gap-10 mb-10`}>
-      <Heading>Your Orders</Heading>
+    <div className={`flex flex-col mx-56 mb-4`}>
+      <Heading>Order Logs</Heading>
+      <BreadCrumbs/>
       {location.pathname=='/order-view'  ? ordersList?.length > 0 ? (
         ordersList?.map((item, index) => {
           return (

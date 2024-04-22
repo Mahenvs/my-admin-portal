@@ -7,7 +7,7 @@ const OrderView = () => {
   const [orderData, setOrderData] = useState(location.state);
 
   return (
-    <div className="flex flex-col  my-4 gap-5 overflow-auto p-3 border-gray-500 border rounded">
+    <div className="shadow-lg shadow-slate-400 flex flex-col  my-4 gap-5 overflow-auto p-3 border-gray-500 rounded">
       <h1 className="font-bold text-2xl">Purchase Details</h1>
       <div className="flex justify-between font-medium font-xl pb-1 border-b">
         <span>Date of Purchase: {orderData?.purchaseDetails?.dateOfPurchase}</span>

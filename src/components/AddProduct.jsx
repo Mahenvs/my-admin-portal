@@ -110,7 +110,7 @@ const AddProduct = () => {
     <>
       <Card>
         <span className="flex justify-center">
-          <Form className=" shadow-lg px-5 py-1">
+          <Form className=" shadow-lg px-5 py-1 shadow-slate-400">
             <h3 className="mt-1 text-2xl font-bold">Product Information</h3>
             <section className="mt-3 flex gap-4 items-center justify-end  ">
               <CustomFormLabel label={"Category"} />

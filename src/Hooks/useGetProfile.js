@@ -12,7 +12,6 @@ export const useGetProfile = () => {
     
     await axios.get(getInfoUrl, getHeaders())
     .then((response) => {
-        
         dispatch(setProfileData(response.data));
         // return response.data;
       })
