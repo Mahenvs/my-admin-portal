@@ -52,7 +52,7 @@ const Orders = ({
   };
   return (
     <>
-      <Card class="w-full rounded shadow-slate-400 shadow-lg">
+      <Card class="w-full rounded shadow-slate-400 shadow-md mb-4">
         <div className="flex text-lg text-stone-900 font-medium  justify-between">
           <div className="flex ">
             <h1 className="">Order #{orderId}</h1>
