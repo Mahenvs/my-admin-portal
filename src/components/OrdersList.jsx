@@ -7,9 +7,7 @@ import { Outlet, useLocation } from "react-router-dom";
 const OrdersList = () => {
   useGetAllOrders();
   const ordersList = useSelector((store) => store.orderStore.orderData);
-  console.log(ordersList);
   const location = useLocation();
-  console.log(location);
   
   return (
     <div className={`flex flex-col mx-56 gap-10 mb-10`}>

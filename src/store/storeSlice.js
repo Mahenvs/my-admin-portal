@@ -7,7 +7,8 @@ const storeSlice = createSlice({
         adminid: null,
         storeId: null,
         profileData: null,
-        currentPath: null
+        currentPath: null,
+        storeImg:null
     },
     reducers: {
 
@@ -25,9 +26,12 @@ const storeSlice = createSlice({
         },
         setCurrentPath: (state,action) => {
             state.currentPath = action.payload;
-        }
+        },
+        setStoreImg: (state,action) => {
+            state.storeImg = action.payload;
+        },
     }
 })
 
-export const {setName,setAdminId,setStoreId,setProfileData,setCurrentPath} = storeSlice.actions;
+export const {setStoreImg,setName,setAdminId,setStoreId,setProfileData,setCurrentPath} = storeSlice.actions;
 export default storeSlice.reducer;

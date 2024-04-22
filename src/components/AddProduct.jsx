@@ -34,7 +34,6 @@ const AddProduct = () => {
   let categoriesList = useSelector((store) => store.product.categoriesList);
   let units = useSelector((store) => store.product.units);
   const handlerInput = async (event, flag) => {
-    console.log(event.target.value, event.target.id);
     setFormValue({
       ...formValue,
       [event.target.id]: event.target.value,
@@ -104,7 +103,6 @@ const AddProduct = () => {
     }
   };
   const handlerDropdown = (data, flag) => {
-    console.log("data",data,flag);
     formValue[flag] = data;
   };
 

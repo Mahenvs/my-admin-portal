@@ -34,7 +34,6 @@ const NewShop = () => {
   const imgUrl = import.meta.env.VITE_API_URL_PRODUCT;
 
   const handlerInput = async (event, flag) => {
-    console.log(event.target.value, event.target.id);
     setStoreData((prevValues) => ({
       ...prevValues,
       [flag]: event.target.value,
@@ -59,11 +58,9 @@ const NewShop = () => {
         const result = await resp.text();
 
         if (resp.status == 200) {
-          console.log("62 ",result);
           setuploadedImgUrl(result);
           setErrorMsgImg(null);
         } else {
-          console.log("inside");
           setErrorMsgImg(JSON.parse(result)?.detail);
         }
       } catch (error) {

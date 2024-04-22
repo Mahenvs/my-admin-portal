@@ -13,14 +13,13 @@ const useGetUnits = () => {
     
     await axios.get(units_url, getHeaders())
     .then((response) => {
-        console.log(response.data);
         const data1  = [{unitId:'null',unitName:'Open dropdown'},...response.data]
       
         dispatch(listOfUnits(data1));
-        // return response.data;
       })
       .catch((error) => {
         // Handle error
+        console.error(error)
       });
     // navigate("/customer");
   };

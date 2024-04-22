@@ -14,13 +14,11 @@ export function RedirectHome() {
         handleLogin()
     },[])
     const handleLogin = () => {
-      console.log("loggedin",!localStorage.getItem("userId"),!localStorage.getItem("storeId"));
       if (!localStorage.getItem("userId")) {
         navigate(`/auth?signIn`);
         return null;  
       }
       else{
-        console.log("loggedin",localStorage.getItem("storeId"));
         setLoggedIn(true);
         if(!localStorage.getItem("storeId")) {
           navigate(`/auth?signIn`);
@@ -30,12 +28,6 @@ export function RedirectHome() {
           navigate(`/products`);  
         }      
       }
-    };
-    // if (isLoggedIn == true) {
-    //   navigate(`/products`);
-    //   return null; 
-    // }
-
-    
+    };    
     return <RegisterUser  />;
   }
