@@ -90,8 +90,8 @@ const SideNav = () => {
             key={index}
             className={
               pathIs === item?.to
-                ? "text-lg font-normal text-slate-800  rounded-full sm:rounded-sm px-1 shadow-black bg-gray-900 md:b g-gray-200 w-full flex items-center justify-center sm:p-2 p-1"
-                : "p-1 sm:p-2 flex rounded-sm px-2 text-white text-lg"
+                ? "text-lg  text-white font-semibold  rounded-full sm:rounded-sm px-1 shadow-black bg-gray-900 md:b g-gray-200 w-full flex items-center justify-center sm:p-2 p-1"
+                : "p-1 sm:p-2 font-normal flex rounded-sm px-2 text-white text-lg"
             }
             onClick={() => handleCurrentPath(item?.to)}
           >
