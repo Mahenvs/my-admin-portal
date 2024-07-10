@@ -14,11 +14,14 @@ const useGetAllOrders = () => {
       storeId;
     try {
       const response = await fetch(url, getHeaders());
+      console.log(response);
       if (!response.ok) {
         throw new Error("Network response was not ok.");
       }
+
       const result = await response.json();
-       dispatch(setOrders(result));
+      console.log(result);
+      dispatch(setOrders(result));
     } catch (error) {
       console.error("Error fetching data:", error);
     }

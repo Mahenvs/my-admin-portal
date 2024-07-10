@@ -17,6 +17,11 @@ const TopNav = () => {
     }else if (currentPath == "/add-category") {
       setNavHeading("Add Category");
     }
+    else if (currentPath == "/order-view") {
+      setNavHeading("Add Orders");
+    }else if (currentPath == "/update-profile") {
+      setNavHeading("Store Profile");
+    }
   }, [location]);
 
   const dropdownRef = useRef(null);
@@ -44,14 +49,15 @@ const TopNav = () => {
     navigate("/auth?signIn")
   }
   return (
-    <div className="w-full relative" ref={dropdownRef}>
+    <div className="w-full relative  sm:mt-0" ref={dropdownRef}>
       <div className="shadow-lg text-center items-center px-5 h-[4.8rem] bg-white-600 flex flex-row w-full justify-between">
         <h1 className="text-2xl font-semibold">{navHeading}</h1>
         <button
           className="font-medium"
           onClick={() => setLogOut((val) => !val)}
         >
-          Account
+          <span className="hidden sm:inline">Account</span>
+          <span className="sm:hidden">⚙️</span>
         </button>
       </div>
 

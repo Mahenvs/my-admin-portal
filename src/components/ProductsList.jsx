@@ -35,22 +35,25 @@ export default function ProductsList() {
   };
   return (
     <>
-      <div className="m-16  flex flex-col bg-white shadow-lg px-5 text-black shadow-slate-400">
+      <div className="m-6 sm:m-12 md:m-16  flex flex-col bg-white shadow-lg px-5 text-black shadow-slate-400">
         <div className="flex gap-2 justify-end mt-2 mb-4">
           <Button
             class="bg-red-800"
             title={"Sort⬆⬇"}
             onClickButton={() => sorthandler("productName")}
-          ></Button>
-          <Button class="bg-red-800" title={"Filter"}></Button>
+          >Sort⬆⬇</Button>
+          <Button class="bg-red-800" title={"Filter"}>Filter</Button>
         </div>
         <div className="justify-between items-center p-2 border-b-2 bg-gray-300 rounded ">
           <div className="flex items-center font-semibold self-center align-middle content-center">
-            <span className="w-2/5 " onClick={() => sorthandler("productName")}>
+            <span
+              className="w-3/5 sm:w-2/5 "
+              onClick={() => sorthandler("productName")}
+            >
               Product
             </span>
             <span
-              className="w-1/5 "
+              className="w-1/5 hidden sm:block"
               onClick={() => sorthandler("productPrice")}
             >
               Price
@@ -72,14 +75,14 @@ export default function ProductsList() {
           <>
             {sortedProducts?.map((item, index) => (
               <div key={index} className="flex items-center border-b-2 p-2">
-                <span className="w-2/5 p-1 text-md   border-b-1">
+                <span className="w-3/5 sm:w-2/5 p-1 text-md   border-b-1">
                   <p className="text-red-600 font-semibold">
                     {item.productName}{" "}
                   </p>{" "}
                   <p>{item.categoryName}</p>
                 </span>
 
-                <span className="w-1/5 p-1 text-md  ">
+                <span className="w-1/5 p-1 text-md  sm:block hidden">
                   $ {item.productPrice}
                 </span>
                 <span className="w-1/5 p-1 text-md  ">
@@ -90,7 +93,8 @@ export default function ProductsList() {
                   onClick={() => navigateProductDetail(item?.productName)}
                 >
                   <Button title="View" className="rounded">
-                    View
+                    <span className="inline sm:hidden ">👁️</span>
+                    <span className="sm:inline hidden ">View</span>
                   </Button>
                 </span>
               </div>

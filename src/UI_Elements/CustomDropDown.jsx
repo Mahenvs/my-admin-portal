@@ -15,7 +15,7 @@ const CustomDropDown = ({ options, inputChange, itemId, itemName }) => {
       <select
         value={selectedValue}
         onChange={(e) => handler(e)}
-        className={`w-[25rem] leading-8 p-2 my-2 border-b-2 border-sky-700 rounded text-xl   focus:outline-none focus:border-sky-900  justify-end ${selectedValue == "Open dropdown" ? "text-slate-400" : "text-gray-700" }`}
+        className={`w-[10rem] sm:w-[25rem] leading-8 sm:p-2 sm:my-2 border-b-2 border-sky-700 rounded text-sm sm:text-lg md:text-xl   focus:outline-none focus:border-sky-900  justify-end ${selectedValue == "Open dropdown" ? "text-slate-400" : "text-gray-700" }`}
       >
         {options?.map((item) => (
           <option key={item[itemId]} value={itemId == "categoryId" ? item[itemName] : item[itemId]}

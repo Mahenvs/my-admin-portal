@@ -4,9 +4,9 @@ import TopNav from "./TopNav";
 
 export const RootLayout = () => {
   return (
-    <div className="flex">
+    <div className="sm:flex">
       <NavBar/>
-      <div className="w-full">
+      <div className="  w-full">
       <TopNav className="  "/>      
       <Outlet />
       </div>

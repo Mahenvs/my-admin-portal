@@ -109,10 +109,10 @@ const AddProduct = () => {
   return (
     <>
       <Card>
-        <span className="flex justify-center">
-          <Form className=" shadow-lg px-5 py-1 shadow-slate-400">
+        <span className="inline sm:flex justify-center">
+          <Form className="px-1 shadow-lg sm:px-5 py-1 shadow-slate-400">
             <h3 className="mt-1 text-2xl font-bold">Product Information</h3>
-            <section className="mt-3 flex gap-4 items-center justify-end  ">
+            <section className="mt-3 flex justify-center gap-3 sm:gap-4 items-center sm:justify-end  ">
               <CustomFormLabel label={"Category"} />
               {isNewCategory ? (
                 <CustomFormControl
@@ -144,9 +144,10 @@ const AddProduct = () => {
                 : "Use existing categories?"}
             </p>
 
-            <section className="mt-3 flex gap-4 items-center justify-end  ">
+            <section className="  gap-1 
+            flex ml-2 align-middle   mt-3 sm:gap-4 items-center sm:justify-end  ">
               <CustomFormLabel label="Image" />
-              <div className="w-[25rem]  p-1 my-2 rounded text-xl   ">
+              <div className="w-[10rem] sm:w-[25rem]  p-1 my-2 rounded text-xl   ">
                 <input
                   className="rounded mt-3"
                   type="file"
@@ -159,7 +160,7 @@ const AddProduct = () => {
             <input type="file" className="hidden border focus:outline-none " id="file-input" />
             {form_data.map((item, index) => (
               <section
-                className=" mt-3 flex gap-4 items-center justify-end  "
+                className=" mt-3 flex justify-center gap-3 sm:gap-4 items-center sm:justify-end  "
                 key={index}
               >
                 <CustomFormLabel label={item.label} />
@@ -172,7 +173,7 @@ const AddProduct = () => {
                 />
               </section>
             ))}
-            <section className="mt-3 flex gap-4 items-center justify-end  ">
+            <section className="mt-3 flex gap-3 sm:gap-4 justify-center items-center sm:justify-end  ">
               <CustomFormLabel label={"Units"} />
 
               <CustomDropDown
@@ -190,7 +191,7 @@ const AddProduct = () => {
                 class="text-right h-9"
                 onClickButton={onSave}
               >
-                {" "}
+                {"Save"}
               </Button>
             </span>
           </Form>
