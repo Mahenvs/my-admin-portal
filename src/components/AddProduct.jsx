@@ -6,7 +6,7 @@ import CustomFormControl from "../UI_Elements/CustomFormControl";
 import CustomFormLabel from "../UI_Elements/CustomFormLabel";
 import { useState } from "react";
 import Card from "../UI_Elements/Card";
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { basicAuthToken } from "../Utilities/getHeaders";
 import CustomDropDown from "../UI_Elements/CustomDropDown";
 import { useGetCategories } from "../Hooks/useGetCategories";
@@ -18,7 +18,7 @@ const AddProduct = () => {
   useGetUnits();
   const storeId = useSelector((store) => store.store.storeId);
   const navigate = useNavigate();
-  const [errorMsg,setErrorMsg] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
 
   const [uploadedImgUrl, setuploadedImgUrl] = useState(null);
   const dispatch = useDispatch();
@@ -52,18 +52,19 @@ const AddProduct = () => {
         redirect: "follow",
       };
       try {
-       const resp = await fetch(imgUrl+"/products/images/upload", requestOptions);
-        const result =  await resp.text()       
-          if(resp.status == 200){
-            setuploadedImgUrl(result);
-            setErrorMsg(null)
-          }
-          else{
-            setErrorMsg(JSON.parse(result)?.detail);
-          }
-          
+        const resp = await fetch(
+          imgUrl + "/products/images/upload",
+          requestOptions
+        );
+        const result = await resp.text();
+        if (resp.status == 200) {
+          setuploadedImgUrl(result);
+          setErrorMsg(null);
+        } else {
+          setErrorMsg(JSON.parse(result)?.detail);
+        }
       } catch (error) {
-        console.log("error ",error);
+        console.log("error ", error);
       }
     }
   };
@@ -82,7 +83,7 @@ const AddProduct = () => {
           productName: formValue.Name,
           productDescription: formValue.Description,
           productPrice: formValue.Price,
-          productStockQuantity:formValue.Stock,
+          productStockQuantity: formValue.Stock,
           categoryName: formValue.Category,
           unitId: +formValue.Unit,
           storeId: storeId,
@@ -144,8 +145,10 @@ const AddProduct = () => {
                 : "Use existing categories?"}
             </p>
 
-            <section className="  gap-1 
-            flex ml-2 align-middle   mt-3 sm:gap-4 items-center sm:justify-end  ">
+            <section
+              className="  gap-1 
+            flex ml-2 align-middle   mt-3 sm:gap-4 items-center sm:justify-end  "
+            >
               <CustomFormLabel label="Image" />
               <div className="w-[10rem] sm:w-[25rem]  p-1 my-2 rounded text-xl   ">
                 <input
@@ -156,8 +159,15 @@ const AddProduct = () => {
               </div>
             </section>
             {errorMsg != null && (
-            <span className="text-red-500 font-semibold flex justify-end">{errorMsg}</span>)}
-            <input type="file" className="hidden border focus:outline-none " id="file-input" />
+              <span className="text-red-500 font-semibold flex justify-end">
+                {errorMsg}
+              </span>
+            )}
+            <input
+              type="file"
+              className="hidden border focus:outline-none "
+              id="file-input"
+            />
             {form_data.map((item, index) => (
               <section
                 className=" mt-3 flex justify-center gap-3 sm:gap-4 items-center sm:justify-end  "
